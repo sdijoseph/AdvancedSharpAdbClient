@@ -431,6 +431,13 @@ namespace AdvancedSharpAdbClient
         /// <param name="device">The device for which to get the screen snapshot.</param>
         /// <returns>Xml containing current hierarchy.</returns>
         XmlDocument DumpScreen(DeviceData device);
+        
+        /// <summary>
+        /// Gets the current device screen snapshot asynchronously.
+        /// </summary>
+        /// <param name="device">The device for which to get the screen snapshot.</param>
+        /// <returns>Xml containing current hierarchy.</returns>
+        Task<XmlDocument> DumpScreenAsync(DeviceData device);
 
         /// <summary>
         /// Clicks on the specified coordinates.
@@ -475,6 +482,15 @@ namespace AdvancedSharpAdbClient
         /// <param name="timeout"></param>
         /// <returns>The <see cref="Element"/> class</returns>
         Element FindElement(DeviceData device, string xpath, TimeSpan timeout = default);
+        
+        /// <summary>
+        /// Get element by xpath asynchronously. You can specify the waiting time in timeout.
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="xpath"></param>
+        /// <param name="timeout"></param>
+        /// <returns>The <see cref="Element"/> class</returns>
+        Task<Element> FindElementAsync(DeviceData device, string xpath, TimeSpan timeout = default);
 
         /// <summary>
         /// Get elements by xpath. You can specify the waiting time in timeout.
@@ -484,6 +500,15 @@ namespace AdvancedSharpAdbClient
         /// <param name="timeout"></param>
         /// <returns>The <see cref="Element"/> class</returns>
         Element[] FindElements(DeviceData device, string xpath, TimeSpan timeout = default);
+        
+        /// <summary>
+        /// Get elements by xpath asynchronously. You can specify the waiting time in timeout.
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="xpath"></param>
+        /// <param name="timeout"></param>
+        /// <returns>The <see cref="Element"/> class</returns>
+        Task<Element[]> FindElementsAsync(DeviceData device, string xpath, TimeSpan timeout = default);
 
         /// <summary>
         /// Send keyevent to specific. You can see keyevents here https://developer.android.com/reference/android/view/KeyEvent.
@@ -509,14 +534,14 @@ namespace AdvancedSharpAdbClient
         /// </summary>
         /// <param name="device"></param>
         /// <param name="packagename"></param>
-        void StartApp(DeviceData device, string packagename);
+        Task StartApp(DeviceData device, string packagename);
 
         /// <summary>
         /// Stop an Android application on device.
         /// </summary>
         /// <param name="device"></param>
         /// <param name="packagename"></param>
-        void StopApp(DeviceData device, string packagename);
+        Task StopApp(DeviceData device, string packagename);
 
         /// <summary>
         /// Click BACK button.
