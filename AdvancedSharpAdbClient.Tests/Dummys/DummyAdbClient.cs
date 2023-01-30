@@ -145,6 +145,9 @@ namespace AdvancedSharpAdbClient.Tests
         public XmlDocument DumpScreen(DeviceData device) =>
             throw new NotImplementedException();
 
+        public Task<XmlDocument> DumpScreenAsync(DeviceData device) => 
+            throw new NotImplementedException();
+
         public void Click(DeviceData device, Cords cords) =>
             throw new NotImplementedException();
 
@@ -160,8 +163,14 @@ namespace AdvancedSharpAdbClient.Tests
         public Element FindElement(DeviceData device, string xpath, TimeSpan timeout = default) =>
             throw new NotImplementedException();
 
+        public Task<Element> FindElementAsync(DeviceData device, string xpath, TimeSpan timeout = default) =>
+            throw new NotImplementedException();
+
         public Element[] FindElements(DeviceData device, string xpath, TimeSpan timeout = default) =>
             throw new NotImplementedException();
+
+        public Task<Element[]> FindElementsAsync(DeviceData device, string xpath, TimeSpan timeout = default) 
+            => throw new NotImplementedException();
 
         public void SendKeyEvent(DeviceData device, string key) =>
             throw new NotImplementedException();
@@ -172,11 +181,11 @@ namespace AdvancedSharpAdbClient.Tests
         public void ClearInput(DeviceData device, int charcount) =>
             throw new NotImplementedException();
 
-        public void StartApp(DeviceData device, string packagename) =>
-            throw new NotImplementedException();
+        Task IAdbClient.StartApp(DeviceData device, string packagename) 
+            => throw new NotImplementedException();
 
-        public void StopApp(DeviceData device, string packagename) =>
-            throw new NotImplementedException();
+        Task IAdbClient.StopApp(DeviceData device, string packagename) 
+            => throw new NotImplementedException();
 
         public void BackBtn(DeviceData device) =>
             throw new NotImplementedException();
