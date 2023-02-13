@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace AdvancedSharpAdbClient
 {
@@ -31,7 +32,7 @@ namespace AdvancedSharpAdbClient
         /// Gets the devices that are currently connected to the Android Debug Bridge.
         /// </summary>
 #if !NET35 && !NET40
-        IReadOnlyCollection
+        ReadOnlyObservableCollection
 #else
         IEnumerable
 #endif

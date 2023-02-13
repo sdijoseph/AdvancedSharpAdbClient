@@ -5,6 +5,8 @@
 using AdvancedSharpAdbClient.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,7 +54,7 @@ namespace AdvancedSharpAdbClient
         /// <summary>
         /// The list of devices currently connected to the Android Debug Bridge.
         /// </summary>
-        private readonly List<DeviceData> devices;
+        private readonly ObservableCollection<DeviceData> devices;
 
         /// <summary>
         /// When the <see cref="Start"/> method is called, this <see cref="ManualResetEvent"/>
@@ -86,8 +88,8 @@ namespace AdvancedSharpAdbClient
             )
         {
             Socket = socket ?? throw new ArgumentNullException(nameof(socket));
-            devices = new List<DeviceData>();
-            Devices = devices.AsReadOnly();
+            devices = new ObservableCollection<DeviceData>();
+            Devices = new ReadOnlyObservableCollection<DeviceData>(devices);
 #if HAS_LOGGER
             this.logger = logger ?? NullLogger<DeviceMonitor>.Instance;
 #endif
@@ -108,7 +110,7 @@ namespace AdvancedSharpAdbClient
         /// <inheritdoc/>
         public
 #if !NET35 && !NET40
-            IReadOnlyCollection
+            ReadOnlyObservableCollection
 #else
             IEnumerable
 #endif
